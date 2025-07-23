@@ -14,6 +14,7 @@ from flask_socketio import SocketIO
 # Import our core modules
 from assistant_core import AssistantCore
 from wake_word_detector import run_wake_word_detector
+from config import HOST, PORT, SECRET_KEY, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_RESIZABLE, ICON_PATH
 
 # Configure logging
 logging.basicConfig(
@@ -31,7 +32,7 @@ log.setLevel(logging.ERROR)
 
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', template_folder='templates')
-app.config['SECRET_KEY'] = 'nirvan_secret_key'
+app.config['SECRET_KEY'] = SECRET_KEY
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Initialize assistant core
@@ -89,7 +90,7 @@ def handle_deactivate_window():
 
 def start_server():
     """Start the Flask server"""
-    socketio.run(app, host='0.0.0.0', port=5000, debug=False)
+    socketio.run(app, host=HOST, port=PORT, debug=False)
 
 def main():
     """Main application entry point"""
@@ -108,14 +109,14 @@ def main():
         'Nirvan Assistant',
         'http://127.0.0.1:5000',
         js_api=api,
-        width=400,
-        height=600,
+        width=WINDOW_WIDTH,
+        height=WINDOW_HEIGHT,
         frameless=True,
         easy_drag=True,
         on_top=True,
         hidden=True,
         transparent=True,
-        resizable=False
+        resizable=WINDOW_RESIZABLE
     )
     api.window = window
 
