@@ -10,7 +10,19 @@ from typing import Optional, Callable, List, Dict, Any
 from email.message import EmailMessage
 from jinja2 import Environment, FileSystemLoader, Template
 from prometheus_client import Counter, start_http_server
-from .common import speak, listen_for_command, get_confirmation
+from .common import get_confirmation
+import logging
+
+logger = logging.getLogger(__name__)
+
+def speak(text: str):
+    """Placeholder - speech is handled by speech_handler"""
+    logger.info(f"Email action result: {text}")
+
+def listen_for_command(timeout: int = 15) -> str:
+    """Placeholder - listening is handled by speech_handler"""
+    logger.info("Email action requesting user input")
+    return ""
 from .config import (
     EMAIL_ADDRESS,
     EMAIL_PASSWORD,

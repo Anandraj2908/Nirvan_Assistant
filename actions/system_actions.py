@@ -9,7 +9,14 @@ import platform
 import logging
 from datetime import datetime
 from typing import Dict, Optional, List, Tuple
-from .common import speak
+# Speech functionality is now handled centrally
+import logging
+
+logger = logging.getLogger(__name__)
+
+def speak(text: str):
+    """Placeholder - speech is handled by speech_handler"""
+    logger.info(f"System action result: {text}")
 
 # Configure logging
 logging.basicConfig(filename='system_actions.log', level=logging.INFO,

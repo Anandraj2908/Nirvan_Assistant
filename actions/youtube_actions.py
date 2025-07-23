@@ -66,14 +66,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 # Optional project-level helper (non-fatal if missing)
 # ==============================================================================
 
-try:
-    # Assumed to exist in user codebase per original snippet
-    from .common import speak  # type: ignore
-except Exception:  # pragma: no cover
-    def speak(text: str) -> str:  # noqa: D401
-        """Fallback speak() implementation that simply prints."""
-        print(text)
-        return text
+import logging
+
+logger = logging.getLogger(__name__)
+
+def speak(text: str) -> str:
+    """Placeholder - speech is handled by speech_handler"""
+    logger.info(f"YouTube action result: {text}")
+    return text
 
 
 # ==============================================================================
